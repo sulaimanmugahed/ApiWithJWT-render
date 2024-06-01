@@ -3,9 +3,9 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 5118
+EXPOSE 7045
 
-ENV ASPNETCORE_URLS=http://+:5118
+ENV ASPNETCORE_URLS=http://+:7045
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
