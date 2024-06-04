@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiWithJWT.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240601035700_initial")]
-    partial class initial
+    [Migration("20240604163230_iniyailpro")]
+    partial class iniyailpro
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
