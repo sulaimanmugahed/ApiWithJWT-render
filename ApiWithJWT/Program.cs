@@ -26,14 +26,13 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 
-app.UseHttpsRedirection();
+
+//app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigins");
 app.UseAuthentication();
 app.UseAuthorization();
@@ -41,11 +40,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 // seeding data
-if(app.Environment.IsDevelopment()){
-using var scope = app.Services.CreateScope();
-var scopedService = scope.ServiceProvider;
-await DefaultRoles.SeedAsync(scopedService.GetRequiredService<RoleManager<Role>>());
-await DefaultAdminUserData.SeedAsync(scopedService.GetRequiredService<UserManager<Account>>());
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var scopedService = scope.ServiceProvider;
+    await DefaultRoles.SeedAsync(scopedService.GetRequiredService<RoleManager<Role>>());
+    await DefaultAdminUserData.SeedAsync(scopedService.GetRequiredService<UserManager<Account>>());
 }
 
 
