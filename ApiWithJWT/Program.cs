@@ -41,9 +41,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 // seeding data
+if(app.Environment.IsDevelopment()){
 using var scope = app.Services.CreateScope();
 var scopedService = scope.ServiceProvider;
 await DefaultRoles.SeedAsync(scopedService.GetRequiredService<RoleManager<Role>>());
 await DefaultAdminUserData.SeedAsync(scopedService.GetRequiredService<UserManager<Account>>());
+}
+
 
 app.Run();
